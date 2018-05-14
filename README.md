@@ -14,33 +14,37 @@ A simpler version would be logging many times, traceLog() logs and save
 only the most recent message, and traceDump() displays othat message.
 This version saves and dumps a maximum of the most recent TRACE_MAX messages
 logged.
-//
-// intended usage -
-//
-//  #include <stdio.h>
-//  #include <stdlib.h>
-//  #include <signal.h>
-//  #include "trace.h"
-//
-//  void sig_handler(int signo)
-//  {
-//      if( signo ==  SIGSEGV ) {
-//          traceDump("Signal SIGSEGV");
-//      }
-//      // may handle other signo's
-//      exit( signo );
-//  }
-//
-//  int main(int argc, char **argv)
-//  {
-//      traceInit( "Prgram Test", &printf, 0 );
-//      signal( SIGSEGV, sig_handler );
-//      //
-//      // and possibly other signals
-//      //
-//      // . . . main() logic . . .
-//      return( 0 );
-//  }
+
+intended usage
+
+
+
+intended usage -
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include "trace.h"
+
+void sig_handler(int signo)
+{
+    if( signo ==  SIGSEGV ) {
+        traceDump("Signal SIGSEGV");
+    }
+    // may handle other signo's
+    exit( signo );
+}
+
+int main(int argc, char **argv)
+{
+    traceInit( "Prgram Test", &printf, 0 );
+    signal( SIGSEGV, sig_handler );
+    //
+    // and possibly other signals
+    //
+    // . . . main() logic . . .
+    return( 0 );
+}
 //
 
 
