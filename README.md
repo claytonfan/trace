@@ -15,7 +15,6 @@ only the most recent message, and traceDump() displays othat message.
 This version saves and dumps a maximum of the most recent TRACE_MAX messages
 logged.
 
-//
 // intended usage -
 //
 //  #include <stdio.h>
