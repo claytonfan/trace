@@ -14,6 +14,7 @@ A simpler version would be logging many times, traceLog() logs and save
 only the most recent message, and traceDump() displays othat message.
 This version saves and dumps a maximum of the most recent TRACE_MAX messages
 logged.
+
 //
 // intended usage -
 //
