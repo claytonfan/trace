@@ -17,6 +17,10 @@ logged.
 
 intended usage
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+#include "trace.h
 
 
 intended usage -
