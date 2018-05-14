@@ -18,23 +18,27 @@ logged.
 intended usage -
 
 #include <stdio.h>
+
 #include <stdlib.h>
+
 #include <signal.h>
+
 #include "trace.h"
 
 void sig_handler(int signo)
 {
-      if( signo ==  SIGSEGV ) {
-          traceDump("Signal SIGSEGV");
-      }
-      // may handle other signo's
-      exit( signo );
-  }
+    if( signo ==  SIGSEGV ) {
+        traceDump("Signal SIGSEGV");
+    }   
+    // may handle other signals
+    exit( signo );
+    
+}
 
-  int main(int argc, char **argv)
-  {
-      traceInit( "Prgram Test", &printf, 0 );
-      signal( SIGSEGV, sig_handler );
+int main(int argc, char **argv)
+{
+    traceInit( "Prgram Test", &printf, 0 );
+    signal( SIGSEGV, sig_handler );
       //
       // and possibly other signals
       //
