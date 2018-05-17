@@ -10,8 +10,11 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdarg.h>
+#include <sys/types.h>
+//#include <unistd.h>
 #include "trace.h"
 
+static int    tracePID = 0;
 static int  (*tracePrint)( char * ) = 0;
 static int    traceMax   = TRACE_MAX;
 static int    traceCurrent = 0; // points to current message slot to be filled
@@ -35,6 +38,7 @@ void traceInit( char *tag, int (*print_func)(), int max_size ) {
     }
     traceCurrent = 0;
     traceCount   = 0;
+	tracePID = getpid();
 }
 //
 // public traceDump()
@@ -92,7 +96,7 @@ int tracePrintMessages( int num, char *desc ) {
                 "Function printf() is used" );
         tracePrint = &printf;
     }
-    sprintf( str, "%s\n",  desc );
+    sprintf( str, "%s -- pid %d\n", desc, tracePID );
     (void )(*tracePrint)( str );
     sprintf( str, "%s - trace dump of %d messages:\n",
              traceTag, traceCount );
